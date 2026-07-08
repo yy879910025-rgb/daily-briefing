@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>期货早报 — 2026年7月7日</title>
+<style>
+:root {
+  --bg: #FAF9F6;
+  --card: #FFFFFF;
+  --navy: #1A1F2E;
+  --ink: #1C1C1E;
+  --muted: #6E6E73;
+  --rule: #E8E6E1;
+  --stripe: #F5F4F1;
+  --gain: #CC3333;
+  --loss: #1A8C4B;
+  --gold: #B8943E;
+  --gold-light: #F2E5CC;
+  --blue-accent: #2563EB;
+  --tag-bg: #F0EEE8;
+  --radius: 6px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.04);
+  --shadow-md: 0 2px 12px rgba(0,0,0,.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: #EEECE7;
+  color: var(--ink);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--navy);
+  color: #FFF;
+  padding: 32px 0 20px;
+  border-bottom: 3px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+.masthead::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 320px; height: 100%;
+  background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,.015) 50%, transparent 100%);
+  pointer-events: none;
+}
+.masthead-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 28px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.masthead h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: #FFF;
+}
+.masthead h1 span {
+  color: var(--gold);
+  font-weight: 400;
+  margin-left: 8px;
+  font-size: 14px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .85;
+}
+.masthead-meta {
+  font-size: 13px;
+  color: rgba(255,255,255,.55);
+  text-align: right;
+  line-height: 1.6;
+}
+.masthead-meta strong { color: rgba(255,255,255,.8); font-weight: 500; }
+
+/* ── Page Container ── */
+.page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 28px 60px;
+}
+
+/* ── Market Ribbon ── */
+.market-ribbon {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-top: -18px;
+  position: relative;
+  z-index: 2;
+}
+.ribbon-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 14px 16px 12px;
+  box-shadow: var(--shadow-md);
+  border-top: 3px solid transparent;
+  text-align: center;
+  transition: transform .15s, box-shadow .15s;
+}
+.ribbon-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,.1); }
+.ribbon-card.up   { border-top-color: var(--gain); }
+.ribbon-card.down { border-top-color: var(--loss); }
+.ribbon-card .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+.ribbon-card .value { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.ribbon-card .change { font-size: 13px; font-weight: 600; margin-top: 2px; }
+.ribbon-card.up   .value, .ribbon-card.up   .change { color: var(--gain); }
+.ribbon-card.down .value, .ribbon-card.down .change { color: var(--loss); }
+
+/* ── Section ── */
+.section {
+  margin-top: 36px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.section-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+.section-header .flag {
+  font-size: 20px;
+  line-height: 1;
+}
+.section-header .accent-line {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+  min-width: 20px;
+}
+
+/* ── Cards ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--rule);
+}
+.card.full { grid-column: 1 / -1; }
+.card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+thead th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  padding: 8px 6px;
+  border-bottom: 2px solid var(--rule);
+}
+tbody td {
+  padding: 10px 6px;
+  border-bottom: 1px solid var(--stripe);
+  font-variant-numeric: tabular-nums;
+}
+tbody tr:nth-child(even) td { background: var(--stripe); }
+
+/* ── Colors ── */
+.gain { color: var(--gain); font-weight: 600; }
+.loss { color: var(--loss); font-weight: 600; }
+.up, .down { font-weight: 600; }
+.up { color: var(--gain); }
+.down { color: var(--loss); }
+
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+.tag-up   { background: #FDEAEA; color: var(--gain); }
+.tag-down { background: #E6F4EC; color: var(--loss); }
+.tag-hot  { background: #FFF3E0; color: #E67E22; }
+
+/* ── News List ── */
+.news-list { list-style: none; }
+.news-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--stripe);
+  line-height: 1.6;
+}
+.news-list li:last-child { border-bottom: none; }
+.news-list .headline {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+.news-list .detail {
+  font-size: 13px;
+  color: var(--muted);
+}
+.news-list .source-tag {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--blue-accent);
+  margin-left: 6px;
+}
+.source-tag {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--blue-accent);
+  margin-left: 6px;
+}
+
+/* ── Verification Table ── */
+.verify-table td:nth-child(3) { text-align: center; }
+.stars { color: var(--gold); letter-spacing: 1px; }
+
+/* ── Watch Points ── */
+.watch-list {
+  list-style: none;
+  counter-reset: watch;
+}
+.watch-list li {
+  counter-increment: watch;
+  padding: 14px 0 14px 44px;
+  border-bottom: 1px solid var(--stripe);
+  position: relative;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.watch-list li:last-child { border-bottom: none; }
+.watch-list li::before {
+  content: counter(watch);
+  position: absolute;
+  left: 0; top: 14px;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Big Number Callout ── */
+.big-number {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.03em;
+  color: var(--gain);
+}
+.big-number-label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.big-number .label {
+  font-size: 13px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* ── Buy/Sell Cards ── */
+.buy-card, .sell-card {
+  padding: 20px;
+  border-radius: var(--radius);
+}
+.buy-card {
+  background: linear-gradient(135deg, #FBF5F5 0%, #FEF9F9 100%);
+  border: 1px solid #F0D0D0;
+}
+.sell-card {
+  background: linear-gradient(135deg, #F4F9F5 0%, #F8FBF9 100%);
+  border: 1px solid #C8DFCC;
+}
+.buy-card h4, .sell-card h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.buy-card h4 { color: var(--gain); }
+.sell-card h4 { color: var(--loss); }
+.buy-card .stock-item, .sell-card .stock-item {
+  padding: 10px 0;
+  border-bottom: 1px dotted var(--rule);
+  line-height: 1.7;
+}
+.buy-card .stock-item:last-child, .sell-card .stock-item:last-child { border-bottom: none; }
+.stock-item .stock-name { font-weight: 600; font-size: 15px; }
+.stock-item .stock-reason { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.stock-item .stock-tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 2px;
+  margin-right: 4px;
+  font-weight: 500;
+}
+
+/* ── Conduction Card ── */
+.conduction-card {
+  background: linear-gradient(135deg, #FEFDFB 0%, #FFF9F0 100%);
+  border-left: 4px solid var(--gold);
+}
+
+/* ── Strategy Summary ── */
+.strategy-box {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.strategy-box strong { color: var(--ink); }
+
+/* ═══════════════════════════════════════════════
+   期货特有组件
+   ═══════════════════════════════════════════════ */
+
+/* ── Product Row (期货品种行) ── */
+.product-row {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--card);
+  border-radius: var(--radius);
+  margin-bottom: 6px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--rule);
+  gap: 8px;
+}
+.product-row .prod-name { font-weight: 700; min-width: 4.5rem; font-size: 14px; }
+.product-row .prod-contract { font-size: 12px; color: var(--muted); min-width: 5rem; }
+.product-row .prod-price { font-weight: 600; min-width: 5rem; text-align: right; font-variant-numeric: tabular-nums; }
+.product-row .prod-change { min-width: 4.5rem; text-align: right; font-weight: 600; font-size: 13px; }
+.product-row .prod-oi { font-size: 12px; color: var(--muted); min-width: 5rem; text-align: right; }
+.product-row .prod-basis { font-size: 12px; min-width: 5rem; text-align: right; font-weight: 500; }
+
+/* ── Alert Levels (异动三级) ── */
+.alert-yellow { border-left: 4px solid #F0C040; }
+.alert-orange { border-left: 4px solid #E67E22; }
+.alert-red { border-left: 4px solid var(--gain); }
+
+/* ── Basis Signal (基差信号) ── */
+.basis-positive { color: var(--gain); font-weight: 600; }
+.basis-negative { color: var(--loss); font-weight: 600; }
+
+/* ── Footer ── */
+.page-footer {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 2px solid var(--rule);
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 800px) {
+  .market-ribbon { grid-template-columns: repeat(3, 1fr); }
+  .card-grid { grid-template-columns: 1fr; }
+  .masthead-inner { flex-direction: column; text-align: center; }
+  .masthead-meta { text-align: center; }
+  .product-row { flex-wrap: wrap; }
+}
+@media (max-width: 500px) {
+  .market-ribbon { grid-template-columns: repeat(2, 1fr); }
+  .masthead h1 { font-size: 22px; }
+}
+
+/* Print */
+@media print {
+  body { background: #FFF; }
+  .page { max-width: 100%; }
+  .masthead { background: #FFF; color: #000; border-bottom: 2px solid #000; }
+  .masthead h1 { color: #000; }
+  .masthead-meta { color: #666; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ 1. MASTHEAD 报头 ═══════════ -->
+<div class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <h1>期货早报<span>Futures Daily</span></h1>
+    </div>
+    <div class="masthead-meta">
+      2026年7月7日 周二 · 数据截止 7月6日收盘<br>
+      <strong>10大活跃品种</strong> · 覆盖黑色 / 有色 / 能化
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ── Market Ribbon ── -->
+<div class="market-ribbon">
+  <div class="ribbon-card up">
+    <div class="label">上涨品种</div>
+    <div class="value">4</div>
+    <div class="change">原油 · 铝 · 锌 · 焦炭</div>
+  </div>
+  <div class="ribbon-card down">
+    <div class="label">下跌品种</div>
+    <div class="value">6</div>
+    <div class="change">甲醇 · 铁矿 · 铜 · PTA · 螺纹 · 热卷</div>
+  </div>
+  <div class="ribbon-card up">
+    <div class="label">最大涨幅</div>
+    <div class="value">原油</div>
+    <div class="change">+0.30%</div>
+  </div>
+  <div class="ribbon-card down">
+    <div class="label">最大跌幅</div>
+    <div class="value">甲醇</div>
+    <div class="change">-0.76%</div>
+  </div>
+  <div class="ribbon-card">
+    <div class="label">最活跃</div>
+    <div class="value" style="color:var(--ink);">甲醇</div>
+    <div class="change" style="color:var(--muted);">861,298 手</div>
+  </div>
+  <div class="ribbon-card down">
+    <div class="label">净空最大</div>
+    <div class="value">螺纹钢</div>
+    <div class="change">-11.85 万手</div>
+  </div>
+</div>
+
+<div style="height: 28px;"></div>
+
+<!-- ═══════════ 2. 市场速览 — 10品种表格 ═══════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="flag">📊</span>
+    <h2>市场速览</h2>
+    <span class="accent-line"></span>
+  </div>
+
+  <!-- 表头 -->
+  <div class="product-row" style="background:var(--stripe); border-bottom:2px solid var(--rule); font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; font-weight:500;">
+    <span class="prod-name">品种</span>
+    <span class="prod-contract">合约</span>
+    <span class="prod-price">收盘价</span>
+    <span class="prod-change">涨跌幅</span>
+    <span class="prod-oi">持仓量</span>
+    <span class="prod-basis">基差率</span>
+  </div>
+
+  <!-- 原油 -->
+  <div class="product-row">
+    <span class="prod-name">原油</span>
+    <span class="prod-contract">sc2610</span>
+    <span class="prod-price">438.6</span>
+    <span class="prod-change up">+0.30%</span>
+    <span class="prod-oi">45,042</span>
+    <span class="prod-basis">数据缺失</span>
+  </div>
+
+  <!-- 铝 -->
+  <div class="product-row">
+    <span class="prod-name">铝</span>
+    <span class="prod-contract">al2610</span>
+    <span class="prod-price">22,885</span>
+    <span class="prod-change up">+0.22%</span>
+    <span class="prod-oi">253,183</span>
+    <span class="prod-basis basis-negative">-0.14%</span>
+  </div>
+
+  <!-- 锌 -->
+  <div class="product-row">
+    <span class="prod-name">锌</span>
+    <span class="prod-contract">zn2610</span>
+    <span class="prod-price">24,515</span>
+    <span class="prod-change up">+0.20%</span>
+    <span class="prod-oi">88,878</span>
+    <span class="prod-basis basis-negative">-0.48%</span>
+  </div>
+
+  <!-- 焦炭 -->
+  <div class="product-row">
+    <span class="prod-name">焦炭</span>
+    <span class="prod-contract">j2610</span>
+    <span class="prod-price">1,951</span>
+    <span class="prod-change" style="color:var(--muted);">+0.00%</span>
+    <span class="prod-oi">64,641</span>
+    <span class="prod-basis basis-positive">+3.09%</span>
+  </div>
+
+  <!-- 热卷 -->
+  <div class="product-row">
+    <span class="prod-name">热卷</span>
+    <span class="prod-contract">hc2610</span>
+    <span class="prod-price">3,289</span>
+    <span class="prod-change down">-0.03%</span>
+    <span class="prod-oi">1,629,883</span>
+    <span class="prod-basis basis-positive">+0.46%</span>
+  </div>
+
+  <!-- 螺纹钢 -->
+  <div class="product-row">
+    <span class="prod-name">螺纹钢</span>
+    <span class="prod-contract">rb2610</span>
+    <span class="prod-price">3,072</span>
+    <span class="prod-change down">-0.07%</span>
+    <span class="prod-oi">2,075,691</span>
+    <span class="prod-basis basis-positive">+1.10%</span>
+  </div>
+
+  <!-- PTA -->
+  <div class="product-row">
+    <span class="prod-name">PTA</span>
+    <span class="prod-contract">ta2610</span>
+    <span class="prod-price">5,462</span>
+    <span class="prod-change down">-0.11%</span>
+    <span class="prod-oi">985,995</span>
+    <span class="prod-basis basis-positive">+5.83%</span>
+  </div>
+
+  <!-- 铜 -->
+  <div class="product-row">
+    <span class="prod-name">铜</span>
+    <span class="prod-contract">cu2610</span>
+    <span class="prod-price">102,960</span>
+    <span class="prod-change down">-0.12%</span>
+    <span class="prod-oi">151,621</span>
+    <span class="prod-basis basis-positive">+0.36%</span>
+  </div>
+
+  <!-- 铁矿石 -->
+  <div class="product-row">
+    <span class="prod-name">铁矿石</span>
+    <span class="prod-contract">i2610</span>
+    <span class="prod-price">738</span>
+    <span class="prod-change down">-0.14%</span>
+    <span class="prod-oi">596,824</span>
+    <span class="prod-basis basis-negative">-3.00%</span>
+  </div>
+
+  <!-- 甲醇 -->
+  <div class="product-row" style="background:#FFF9F0;">
+    <span class="prod-name">甲醇</span>
+    <span class="prod-contract">ma2610</span>
+    <span class="prod-price">2,363</span>
+    <span class="prod-change down">-0.76%</span>
+    <span class="prod-oi">678,018</span>
+    <span class="prod-basis basis-positive">+7.03%</span>
+  </div>
+</div>
+
+<!-- ═══════════ 3. 黑色系 — 螺纹钢 / 铁矿石 / 焦炭 / 热卷 ═══════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="flag">⚫</span>
+    <h2>黑色系</h2>
+    <span class="accent-line"></span>
+  </div>
+  <div class="card-grid">
+    <!-- 螺纹钢 -->
+    <div class="card">
+      <h3>螺纹钢 rb2610</h3>
+      <table>
+        <tbody>
+          <tr><td style="color:var(--muted);">收盘价</td><td><strong>3,072</strong></td><td class="down">-0.07%</td></tr>
+          <tr><td style="color:var(--muted);">现货价</td><td colspan="2">3,105.66</td></tr>
+          <tr><td style="color:var(--muted);">基差</td><td colspan="2"><span class="basis-positive">+33.66 (+1.10%)</span></td></tr>
+          <tr><td style="color:var(--muted);">持仓量</td><td colspan="2">2,075,691 手</td></tr>
+          <tr><td style="color:var(--muted);">OI变化</td><td colspan="2">数据缺失</td></tr>
+          <tr><td style="color:var(--muted);">前20净多</td><td colspan="2">1,312,944</td></tr>
+          <tr><td style="color:var(--muted);">前20净空</td><td colspan="2">1,431,445</td></tr>
+          <tr><td style="color:var(--muted);">净持仓</td><td colspan="2"><span class="down">-118,501（净空）</span></td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box">
+        <strong>🔍 要点：</strong>周产量216.52万吨（+1.53%），消费量210.02万吨（+11.27%），库存689.89万吨（+0.95%）。30家建筑钢企6月减产检修影响146万吨（环比+17.24%），沙钢7月4日起废钢下调50元/吨。
+      </div>
+    </div>
+
+    <!-- 铁矿石 -->
+    <div class="card">
+      <h3>铁矿石 i2610</h3>
+      <table>
+        <tbody>
+          <tr><td style="color:var(--muted);">收盘价</td><td><strong>738</strong></td><td class="down">-0.14%</td></tr>
+          <tr><td style="color:var(--muted);">现货价</td><td colspan="2">715.89</td></tr>
+          <tr><td style="color:var(--muted);">基差</td><td colspan="2"><span class="basis-negative">-22.11 (-3.00%)</span></td></tr>
+          <tr><td style="color:var(--muted);">持仓量</td><td colspan="2">596,824 手</td></tr>
+          <tr><td style="color:var(--muted);">OI变化</td><td colspan="2">数据缺失</td></tr>
+          <tr><td style="color:var(--muted);">前20净多</td><td colspan="2">81,581</td></tr>
+          <tr><td style="color:var(--muted);">前20净空</td><td colspan="2">83,140</td></tr>
+          <tr><td style="color:var(--muted);">净持仓</td><td colspan="2"><span class="down">-1,559（净空）</span></td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box">
+        <strong>🔍 要点：</strong>中澳铁矿石贸易摩擦升温——中国矿产资源集团要求部分钢厂7月15日起不得接Fortescue产品。45港进口矿库存16,702.59万吨（周环比-91.35万吨）。上清所人民币铁矿石掉期（CIS）7月2日首笔成交。
+      </div>
+    </div>
+
+    <!-- 焦炭 -->
+    <div class="card">
+      <h3>焦炭 j2610</h3>
+      <table>
+        <tbody>
+          <tr><td style="color:var(--muted);">收盘价</td><td><strong>1,951</strong></td><td style="color:var(--muted);">+0.00%</td></tr>
+          <tr><td style="color:var(--muted);">现货价</td><td colspan="2">2,011.25</td></tr>
+          <tr><td style="color:var(--muted);">基差</td><td colspan="2"><span class="basis-positive">+60.25 (+3.09%)</span></td></tr>
+          <tr><td style="color:var(--muted);">持仓量</td><td colspan="2">64,641 手</td></tr>
+          <tr><td style="color:var(--muted);">OI变化</td><td colspan="2">数据缺失</td></tr>
+          <tr><td style="color:var(--muted);">前20持仓</td><td colspan="2">数据缺失</td></tr>
+          <tr><td style="color:var(--muted);">净持仓</td><td colspan="2">数据缺失</td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box">
+        <strong>🔍 要点：</strong>焦炭平盘报收，现货升水60.25元/吨（+3.09%），期限结构偏强。黑色系整体受减产检修扩大影响，需求端等待进一步验证。
+      </div>
+    </div>
+
+    <!-- 热卷 -->
+    <div class="card">
+      <h3>热卷 hc2610</h3>
+      <table>
+        <tbody>
+          <tr><td style="color:var(--muted);">收盘价</td><td><strong>3,289</strong></td><td class="down">-0.03%</td></tr>
+          <tr><td style="color:var(--muted);">现货价</td><td colspan="2">3,304.00</td></tr>
+          <tr><td style="color:var(--muted);">基差</td><td colspan="2"><span class="basis-positive">+15.00 (+0.46%)</span></td></tr>
+          <tr><td style="color:var(--muted);">持仓量</td><td colspan="2">1,629,883 手</td></tr>
+          <tr><td style="color:var(--muted);">OI变化</td><td colspan="2">数据缺失</td></tr>
+          <tr><td style="color:var(--muted);">前20净多</td><td colspan="2">1,156,135</td></tr>
+          <tr><td style="color:var(--muted);">前20净空</td><td colspan="2">1,130,717</td></tr>
+          <tr><td style="color:var(--muted);">净持仓</td><td colspan="2"><span class="up">+25,418（净多）</span></td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box">
+        <strong>🔍 要点：</strong>热卷净多2.54万手，为黑色系中唯一净多品种。基差+15元（+0.46%），期现接近平水。与螺纹钢形成分化——螺纹净空11.85万手 vs 热卷净多2.54万手。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 4. 有色金属 — 铜 / 铝 / 锌 + LME对比 ═══════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="flag">🟠</span>
+    <h2>有色金属</h2>
+    <span class="accent-line"></span>
+  </div>
+  <div class="card-grid">
+    <!-- 铜 -->
+    <div class="card">
+      <h3>铜 cu2610</h3>
+      <table>
+        <tbody>
+          <tr><td style="color:var(--muted);">收盘价</td><td><strong>102,960</strong></td><td class="down">-0.12%</td></tr>
+          <tr><td style="color:var(--muted);">现货价</td><td colspan="2">103,335</td></tr>
+          <tr><td style="color:var(--muted);">基差</td><td colspan="2"><span class="basis-positive">+375 (+0.36%)</span></td></tr>
+          <tr><td style="color:var(--muted);">持仓量</td><td colspan="2">151,621 手</td></tr>
+          <tr><td style="color:var(--muted);">净持仓</td><td colspan="2"><span class="down">-7,624（净空）</span></td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box">
+        <strong>🔍 要点：</strong>铜冶炼加工费持续下行，部分企业放弃固定加工费模式，矿端紧张格局未变。秘鲁进入紧急状态，关注矿端供应扰动。等待美国铜关税评估报告结果。
+      </div>
+    </div>
+
+    <!-- 铝 -->
+    <div class="card">
+      <h3>铝 al2610</h3>
+      <table>
+        <tbody>
+          <tr><td style="color:var(--muted);">收盘价</td><td><strong>22,885</strong></td><td class="up">+0.22%</td></tr>
+          <tr><td style="color:var(--muted);">现货价</td><td colspan="2">22,853.33</td></tr>
+          <tr><td style="color:var(--muted);">基差</td><td colspan="2"><span class="basis-negative">-31.67 (-0.14%)</span></td></tr>
+          <tr><td style="color:var(--muted);">持仓量</td><td colspan="2">253,183 手</td></tr>
+          <tr><td style="color:var(--muted);">净持仓</td><td colspan="2"><span class="down">-2,467（净空）</span></td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box">
+        <strong>🔍 要点：</strong>铝价小幅反弹+0.22%，持仓25.3万手。现货微贴水-0.14%，期现基本平水。LME铝隔夜涨+0.73%，外盘偏强。
+      </div>
+    </div>
+
+    <!-- 锌 -->
+    <div class="card">
+      <h3>锌 zn2610</h3>
+      <table>
+        <tbody>
+          <tr><td style="color:var(--muted);">收盘价</td><td><strong>24,515</strong></td><td class="up">+0.20%</td></tr>
+          <tr><td style="color:var(--muted);">现货价</td><td colspan="2">24,398</td></tr>
+          <tr><td style="color:var(--muted);">基差</td><td colspan="2"><span class="basis-negative">-117 (-0.48%)</span></td></tr>
+          <tr><td style="color:var(--muted);">持仓量</td><td colspan="2">88,878 手</td></tr>
+          <tr><td style="color:var(--muted);">净持仓</td><td colspan="2">数据缺失</td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box">
+        <strong>🔍 要点：</strong>锌价微涨+0.20%，持仓8.9万手。期货小幅升水现货117元/吨。LME锌隔夜领涨+1.07%，外盘带动偏强。
+      </div>
+    </div>
+
+    <!-- LME对比 -->
+    <div class="card conduction-card">
+      <h3>LME 隔夜对比</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>品种</th>
+            <th>SHFE收盘</th>
+            <th>LME 3M</th>
+            <th>LME涨跌</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>铜</strong></td>
+            <td>¥102,960</td>
+            <td>$13,411</td>
+            <td class="up">+0.33%</td>
+          </tr>
+          <tr>
+            <td><strong>铝</strong></td>
+            <td>¥22,885</td>
+            <td>$3,113</td>
+            <td class="up">+0.73%</td>
+          </tr>
+          <tr>
+            <td><strong>锌</strong></td>
+            <td>¥24,515</td>
+            <td>$3,579</td>
+            <td class="up">+1.07%</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="strategy-box">
+        <strong>📌 LME全线飘红：</strong>锌领涨+1.07%($3,535-$3,594)，铝+0.73%($3,094-$3,124.50)，铜+0.33%($13,320-$13,458)。外盘偏强，关注今日内盘有色高开可能。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 5. 能化 — 原油 / PTA / 甲醇 + WTI联动 ═══════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="flag">🛢️</span>
+    <h2>能化</h2>
+    <span class="accent-line"></span>
+  </div>
+  <div class="card-grid">
+    <!-- 原油 -->
+    <div class="card">
+      <h3>原油 sc2610</h3>
+      <table>
+        <tbody>
+          <tr><td style="color:var(--muted);">收盘价</td><td><strong>438.6</strong></td><td class="up">+0.30%</td></tr>
+          <tr><td style="color:var(--muted);">现货价</td><td colspan="2">数据缺失</td></tr>
+          <tr><td style="color:var(--muted);">基差</td><td colspan="2">数据缺失</td></tr>
+          <tr><td style="color:var(--muted);">持仓量</td><td colspan="2">45,042 手</td></tr>
+          <tr><td style="color:var(--muted);">净持仓</td><td colspan="2">数据缺失</td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box">
+        <strong>🔍 要点：</strong>OPEC+ 7个产油国决定8月日均增产18.8万桶（连续五个月增产），霍尔木兹海峡通航恢复。Macquarie大幅下调2026年布伦特油价预测至$77/桶（原$89）。国内成品油年内最大降幅落地：汽柴油每吨分别下调950元/915元。
+      </div>
+    </div>
+
+    <!-- PTA -->
+    <div class="card">
+      <h3>PTA ta2610</h3>
+      <table>
+        <tbody>
+          <tr><td style="color:var(--muted);">收盘价</td><td><strong>5,462</strong></td><td class="down">-0.11%</td></tr>
+          <tr><td style="color:var(--muted);">现货价</td><td colspan="2">5,780.66</td></tr>
+          <tr><td style="color:var(--muted);">基差</td><td colspan="2"><span class="basis-positive">+318.66 (+5.83%)</span></td></tr>
+          <tr><td style="color:var(--muted);">持仓量</td><td colspan="2">985,995 手</td></tr>
+          <tr><td style="color:var(--muted);">净持仓</td><td colspan="2"><span class="up">+1,126（净多）</span></td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box">
+        <strong>🔍 要点：</strong>现货升水5.83%，期货深度贴水。持仓98.6万手，为能化板块持仓最大品种。关注下游需求修复带来的基差收敛机会。
+      </div>
+    </div>
+
+    <!-- 甲醇 -->
+    <div class="card">
+      <h3>甲醇 ma2610</h3>
+      <table>
+        <tbody>
+          <tr><td style="color:var(--muted);">收盘价</td><td><strong>2,363</strong></td><td class="down">-0.76%</td></tr>
+          <tr><td style="color:var(--muted);">现货价</td><td colspan="2">2,529.17</td></tr>
+          <tr><td style="color:var(--muted);">基差</td><td colspan="2"><span class="basis-positive">+166.17 (+7.03%)</span></td></tr>
+          <tr><td style="color:var(--muted);">持仓量</td><td colspan="2">678,018 手</td></tr>
+          <tr><td style="color:var(--muted);">净持仓</td><td colspan="2"><span class="up">+2,275（净多）</span></td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box">
+        <strong>🔍 要点：</strong>今日最大跌幅-0.76%，成交量86.1万手为全品种最活跃。现货升水7.03%为10品种之最，期货深度贴水，基差回归机会最为突出。
+      </div>
+    </div>
+
+    <!-- WTI联动 -->
+    <div class="card conduction-card">
+      <h3>WTI 原油联动</h3>
+      <table>
+        <tbody>
+          <tr><td style="color:var(--muted);">WTI 8月合约</td><td><strong>$68.55</strong></td><td class="down">-0.2%</td></tr>
+          <tr><td style="color:var(--muted);">SC原油</td><td>¥438.6</td><td class="up">+0.30%</td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box">
+        <strong>📌 内外分化：</strong>WTI隔夜微跌-0.2%，OPEC+增产+霍尔木兹通航恢复双重压力。SC原油日内逆势收涨+0.30%，内外盘短期背离。油价中枢面临下调风险，Macquarie将布伦特目标从$89降至$77/桶。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 6. 持仓异动 ═══════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="flag">⚠️</span>
+    <h2>持仓异动</h2>
+    <span class="accent-line"></span>
+    <span class="tag tag-hot">1项触发</span>
+  </div>
+
+  <div class="card full news-list">
+    <h3>📋 净持仓显著偏离品种</h3>
+    <p style="font-size:13px; color:var(--muted); margin-bottom:16px;">
+      注：本日持仓变化（OI Change）数据源缺失，以下基于前20名多空持仓排名净头寸分析。
+    </p>
+    <ul class="news-list">
+      <li class="alert-red" style="padding-left:16px;">
+        <div class="headline">
+          螺纹钢 rb2610 · 净空11.85万手
+          <span class="tag tag-down">净空最大</span>
+        </div>
+        <div class="detail">
+          前20名多头持仓 1,312,944 手 vs 空头持仓 1,431,445 手，净空占持仓量 5.7%，空头集中度显著偏高，为10品种净空之最。结合30家钢企减产检修扩大（6月影响146万吨，环比+17.24%），产业端与资金端共振偏空。
+        </div>
+      </li>
+    </ul>
+
+    <div style="margin-top: 16px;">
+      <h3>📊 持仓结构一览</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>品种</th>
+            <th>前20多</th>
+            <th>前20空</th>
+            <th>净持仓</th>
+            <th>方向</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>螺纹钢</strong></td>
+            <td>1,312,944</td>
+            <td>1,431,445</td>
+            <td class="down">-118,501</td>
+            <td><span class="tag tag-down">净空</span></td>
+          </tr>
+          <tr>
+            <td><strong>铜</strong></td>
+            <td>37,363</td>
+            <td>44,987</td>
+            <td class="down">-7,624</td>
+            <td><span class="tag tag-down">净空</span></td>
+          </tr>
+          <tr>
+            <td><strong>铝</strong></td>
+            <td>53,662</td>
+            <td>56,129</td>
+            <td class="down">-2,467</td>
+            <td><span class="tag tag-down">净空</span></td>
+          </tr>
+          <tr>
+            <td><strong>铁矿石</strong></td>
+            <td>81,581</td>
+            <td>83,140</td>
+            <td class="down">-1,559</td>
+            <td><span class="tag tag-down">净空</span></td>
+          </tr>
+          <tr>
+            <td><strong>PTA</strong></td>
+            <td>170,812</td>
+            <td>169,686</td>
+            <td class="up">+1,126</td>
+            <td><span class="tag tag-up">净多</span></td>
+          </tr>
+          <tr>
+            <td><strong>甲醇</strong></td>
+            <td>383,994</td>
+            <td>381,719</td>
+            <td class="up">+2,275</td>
+            <td><span class="tag tag-up">净多</span></td>
+          </tr>
+          <tr>
+            <td><strong>热卷</strong></td>
+            <td>1,156,135</td>
+            <td>1,130,717</td>
+            <td class="up">+25,418</td>
+            <td><span class="tag tag-up">净多</span></td>
+          </tr>
+          <tr>
+            <td><strong>焦炭</strong></td>
+            <td colspan="3" style="color:var(--muted);">数据缺失</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>锌</strong></td>
+            <td colspan="3" style="color:var(--muted);">数据缺失</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>原油</strong></td>
+            <td colspan="3" style="color:var(--muted);">数据缺失</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 7. 基差机会 ═══════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="flag">🎯</span>
+    <h2>基差机会</h2>
+    <span class="accent-line"></span>
+    <span class="tag tag-hot">2个信号</span>
+  </div>
+
+  <!-- 甲醇基差 -->
+  <div class="card full" style="margin-bottom:16px;">
+    <h3>🟡 甲醇 ma2610 — 基差率 +7.03%</h3>
+    <table>
+      <tbody>
+        <tr>
+          <td style="color:var(--muted); width:100px;">现货价格</td>
+          <td><strong>¥2,529.17</strong></td>
+          <td style="color:var(--muted); width:100px;">期货价格</td>
+          <td><strong>¥2,363.00</strong></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);">基差</td>
+          <td><span class="basis-positive">+166.17</span></td>
+          <td style="color:var(--muted);">基差率</td>
+          <td><span class="basis-positive">+7.03%</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="strategy-box">
+      <strong>📌 信号：</strong>现货大幅升水7.03%，期货深度贴水，为10品种中基差率最高。关注基差回归机会——随着交割月临近，期现价差有收敛动力。甲醇今日跌-0.76%为最大跌幅品种，但现货端支撑较强，不宜过度追空。
+    </div>
+  </div>
+
+  <!-- PTA基差 -->
+  <div class="card full">
+    <h3>🟡 PTA ta2610 — 基差率 +5.83%</h3>
+    <table>
+      <tbody>
+        <tr>
+          <td style="color:var(--muted); width:100px;">现货价格</td>
+          <td><strong>¥5,780.66</strong></td>
+          <td style="color:var(--muted); width:100px;">期货价格</td>
+          <td><strong>¥5,462.00</strong></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);">基差</td>
+          <td><span class="basis-positive">+318.66</span></td>
+          <td style="color:var(--muted);">基差率</td>
+          <td><span class="basis-positive">+5.83%</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="strategy-box">
+      <strong>📌 信号：</strong>现货升水5.83%，期货贴水幅度较大。关注下游需求修复带来的基差收敛——PTA持仓98.6万手为能化最大品种，市场参与度高，基差回归动能充足。原油端利空（OPEC+增产+WTI走弱）可能压制期货端修复节奏。
+    </div>
+  </div>
+
+  <!-- 黑色系基差对比 -->
+  <div class="card full" style="margin-top:16px;">
+    <h3>📊 全品种基差一览</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>品种</th>
+          <th>现货价</th>
+          <th>期货价</th>
+          <th>基差</th>
+          <th>基差率</th>
+          <th>方向</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>甲醇</strong></td>
+          <td>2,529.17</td>
+          <td>2,363</td>
+          <td class="basis-positive">+166.17</td>
+          <td class="basis-positive">+7.03%</td>
+          <td><span class="tag tag-up">现货升水</span></td>
+        </tr>
+        <tr>
+          <td><strong>PTA</strong></td>
+          <td>5,780.66</td>
+          <td>5,462</td>
+          <td class="basis-positive">+318.66</td>
+          <td class="basis-positive">+5.83%</td>
+          <td><span class="tag tag-up">现货升水</span></td>
+        </tr>
+        <tr>
+          <td><strong>焦炭</strong></td>
+          <td>2,011.25</td>
+          <td>1,951</td>
+          <td class="basis-positive">+60.25</td>
+          <td class="basis-positive">+3.09%</td>
+          <td><span class="tag tag-up">现货升水</span></td>
+        </tr>
+        <tr>
+          <td><strong>螺纹钢</strong></td>
+          <td>3,105.66</td>
+          <td>3,072</td>
+          <td class="basis-positive">+33.66</td>
+          <td class="basis-positive">+1.10%</td>
+          <td><span class="tag tag-up">现货升水</span></td>
+        </tr>
+        <tr>
+          <td><strong>热卷</strong></td>
+          <td>3,304.00</td>
+          <td>3,289</td>
+          <td class="basis-positive">+15.00</td>
+          <td class="basis-positive">+0.46%</td>
+          <td><span class="tag tag-up">现货升水</span></td>
+        </tr>
+        <tr>
+          <td><strong>铜</strong></td>
+          <td>103,335</td>
+          <td>102,960</td>
+          <td class="basis-positive">+375.00</td>
+          <td class="basis-positive">+0.36%</td>
+          <td><span class="tag tag-up">现货升水</span></td>
+        </tr>
+        <tr>
+          <td><strong>铝</strong></td>
+          <td>22,853.33</td>
+          <td>22,885</td>
+          <td class="basis-negative">-31.67</td>
+          <td class="basis-negative">-0.14%</td>
+          <td><span class="tag tag-down">期货升水</span></td>
+        </tr>
+        <tr>
+          <td><strong>锌</strong></td>
+          <td>24,398</td>
+          <td>24,515</td>
+          <td class="basis-negative">-117.00</td>
+          <td class="basis-negative">-0.48%</td>
+          <td><span class="tag tag-down">期货升水</span></td>
+        </tr>
+        <tr>
+          <td><strong>铁矿石</strong></td>
+          <td>715.89</td>
+          <td>738</td>
+          <td class="basis-negative">-22.11</td>
+          <td class="basis-negative">-3.00%</td>
+          <td><span class="tag tag-down">期货升水</span></td>
+        </tr>
+        <tr>
+          <td><strong>原油</strong></td>
+          <td colspan="2" style="color:var(--muted);">数据缺失</td>
+          <td style="color:var(--muted);">数据缺失</td>
+          <td style="color:var(--muted);">数据缺失</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════ 8. 隔夜外盘传导 ═══════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="flag">🌍</span>
+    <h2>隔夜外盘传导</h2>
+    <span class="accent-line"></span>
+    <span style="font-size:12px; color:var(--muted);">7月6日夜间收盘</span>
+  </div>
+  <div class="card-grid">
+    <!-- LME铜 -->
+    <div class="card conduction-card">
+      <h3>LME 铜 3M</h3>
+      <div class="big-number" style="font-size:36px; color:var(--gain);">$13,411</div>
+      <div class="big-number-label"><span class="up">+0.33%</span> · 区间 $13,320-$13,458</div>
+      <div class="strategy-box">
+        <strong>传导：</strong>LME铜微涨，SHFE铜收跌-0.12%，内外盘小幅背离。矿端紧张+秘鲁紧急状态为铜价提供底部支撑。
+      </div>
+    </div>
+
+    <!-- LME铝 -->
+    <div class="card conduction-card">
+      <h3>LME 铝 3M</h3>
+      <div class="big-number" style="font-size:36px; color:var(--gain);">$3,113</div>
+      <div class="big-number-label"><span class="up">+0.73%</span> · 区间 $3,094-$3,124.50</div>
+      <div class="strategy-box">
+        <strong>传导：</strong>LME铝涨幅居前，SHFE铝+0.22%同步走强，内外盘共振偏多。
+      </div>
+    </div>
+
+    <!-- LME锌 -->
+    <div class="card conduction-card">
+      <h3>LME 锌 3M</h3>
+      <div class="big-number" style="font-size:36px; color:var(--gain);">$3,579</div>
+      <div class="big-number-label"><span class="up">+1.07%</span> · 区间 $3,535-$3,594</div>
+      <div class="strategy-box">
+        <strong>传导：</strong>LME锌领涨基本金属+1.07%，SHFE锌+0.20%跟涨，外盘动能偏强，今日内盘有色或有高开。
+      </div>
+    </div>
+
+    <!-- WTI -->
+    <div class="card conduction-card">
+      <h3>WTI 原油 8月</h3>
+      <div class="big-number" style="font-size:36px; color:var(--loss);">$68.55</div>
+      <div class="big-number-label"><span class="down">-0.2%</span> · OPEC+增产+海峡通航</div>
+      <div class="strategy-box">
+        <strong>传导：</strong>OPEC+ 8月增产18.8万桶/日+霍尔木兹海峡出口恢复，双重利空。SC原油逆势收涨+0.30%，短期背离但中期承压。
+      </div>
+    </div>
+
+    <!-- SGX铁矿 -->
+    <div class="card conduction-card">
+      <h3>SGX 铁矿掉期 62% Fe</h3>
+      <table>
+        <tbody>
+          <tr><td style="color:var(--muted);">7月合约</td><td><strong>$97.99</strong></td></tr>
+          <tr><td style="color:var(--muted);">8月合约</td><td><strong>$97.81</strong></td></tr>
+          <tr><td style="color:var(--muted);">9月合约</td><td><strong>$97.70</strong></td></tr>
+        </tbody>
+      </table>
+      <div style="font-size:13px; color:var(--loss); margin-top:4px;">▼ $0.35-$0.44</div>
+      <div class="strategy-box">
+        <strong>传导：</strong>SGX掉期全线下跌，远期贴水结构。中澳贸易摩擦+钢厂按需采购，铁矿情绪偏弱。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 9. 今日关注 ═══════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="flag">📅</span>
+    <h2>今日关注</h2>
+    <span class="accent-line"></span>
+    <span style="font-size:12px; color:var(--muted);">2026年7月7日 · 周二</span>
+  </div>
+
+  <div class="card full">
+    <!-- 重点提示 -->
+    <div style="background:linear-gradient(135deg, #FFF9F0 0%, #FFFDF5 100%); border:1px solid var(--gold-light); border-radius:var(--radius); padding:16px 20px; margin-bottom:20px;">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+        <span style="font-size:18px;">⭐</span>
+        <strong style="font-size:16px;">重点关注</strong>
+        <span class="tag tag-hot">★★★</span>
+        <span>22:00 美国ISM非制造业PMI（预期54，前值54.5）— 当日最重要宏观数据</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:18px;">⭐</span>
+        <strong style="font-size:16px;">重点关注</strong>
+        <span class="tag tag-hot">★★★</span>
+        <span>23:00 EIA短期能源展望（STEO）— 全球原油供需平衡预测，直接影响能化板块</span>
+      </div>
+    </div>
+
+    <ul class="watch-list">
+      <li>
+        <strong>全天 · 中国6月外汇储备</strong> <span class="stars">★★</span><br>
+        <span style="color:var(--muted);">人民币汇率预期、大宗商品进口能力参考。关注外储变动对汇率及进口成本的影响。</span>
+      </li>
+      <li>
+        <strong>16:00 · USDA作物优良率（棉花/玉米/大豆）</strong> <span class="stars">★★</span><br>
+        <span style="color:var(--muted);">影响CBOT农产品期货走势，关注优良率变化对进口成本传导。</span>
+      </li>
+      <li>
+        <strong>19:15 · 美国ADP周度就业人数</strong> <span class="stars">★★</span><br>
+        <span style="color:var(--muted);">劳动力市场高频指标，影响美元及降息预期。6月非农仅增5.7万创近4个月新低，关注ADP验证。</span>
+      </li>
+      <li>
+        <strong>19:30 · 美国5月贸易帐</strong> <span class="stars">★★</span><br>
+        <span style="color:var(--muted);">预期-785亿美元，前值-559亿。贸易逆差扩大或施压美元，间接利好大宗商品。</span>
+      </li>
+      <li>
+        <strong>21:45 · 美国标普全球服务业PMI终值</strong> <span class="stars">★★</span><br>
+        <span style="color:var(--muted);">前值51.3，服务业景气度验证。</span>
+      </li>
+      <li>
+        <strong>22:00 · 美国ISM非制造业PMI</strong> <span class="stars">★★★</span><br>
+        <span style="color:var(--muted);">预期54，前值54.5。当日最重要宏观数据，影响美元/大宗商品方向。若低于预期，降息预期升温利多商品。</span>
+      </li>
+      <li>
+        <strong>23:00 · EIA短期能源展望（STEO）</strong> <span class="stars">★★★</span><br>
+        <span style="color:var(--muted);">全球原油供需平衡及价格预测，直接影响SC原油及能化板块。结合OPEC+增产及Macquarie下调油价预期，关注EIA官方预测方向。</span>
+      </li>
+      <li>
+        <strong>次日03:30 · API原油库存周报</strong> <span class="stars">★★</span><br>
+        <span style="color:var(--muted);">前值-607.2万桶，为次日EIA官方库存预热。若库存继续下降，或为油价提供短期支撑。</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="page-footer">
+  <span>数据来源：MCP stock-briefing (akshare) · 上期所/大商所/郑商所/上海国际能源交易中心</span>
+  <span>LME · WTI · SGX · mysteel · 金十数据 · investing.com</span>
+</div>
+
+</div><!-- /.page -->
+
+</body>
+</html>

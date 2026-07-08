@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日股市简报 — 2026-07-06</title>
+  <!--
+    每日股市简报 — CSS 模板（锁定版本）
+    所有生成的简报必须使用此 CSS，不得自行修改样式体系
+
+    设计系统：
+    --navy:   #1A1F2E  深色报头
+    --gold:   #B8943E  金色强调
+    --gain:   #CC3333  涨（红）
+    --loss:   #1A8C4B  跌（绿）
+    --bg:     #FAF9F6  页面背景
+    --card:   #FFFFFF  卡片白
+    --rule:   #E8E6E1  分割线
+    --stripe: #F5F4F1  表格条纹
+    --muted:  #6E6E73  次要文字
+  -->
+<style>
+:root {
+  --bg: #FAF9F6;
+  --card: #FFFFFF;
+  --navy: #1A1F2E;
+  --ink: #1C1C1E;
+  --muted: #6E6E73;
+  --rule: #E8E6E1;
+  --stripe: #F5F4F1;
+  --gain: #CC3333;
+  --loss: #1A8C4B;
+  --gold: #B8943E;
+  --gold-light: #F2E5CC;
+  --blue-accent: #2563EB;
+  --tag-bg: #F0EEE8;
+  --radius: 6px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.04);
+  --shadow-md: 0 2px 12px rgba(0,0,0,.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: #EEECE7;
+  color: var(--ink);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--navy);
+  color: #FFF;
+  padding: 32px 0 20px;
+  border-bottom: 3px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+.masthead::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 320px; height: 100%;
+  background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,.015) 50%, transparent 100%);
+  pointer-events: none;
+}
+.masthead-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 28px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.masthead h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: #FFF;
+}
+.masthead h1 span {
+  color: var(--gold);
+  font-weight: 400;
+  margin-left: 8px;
+  font-size: 14px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .85;
+}
+.masthead-meta {
+  font-size: 13px;
+  color: rgba(255,255,255,.55);
+  text-align: right;
+  line-height: 1.6;
+}
+.masthead-meta strong { color: rgba(255,255,255,.8); font-weight: 500; }
+
+/* ── Page Container ── */
+.page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 28px 60px;
+}
+
+/* ── Market Ribbon ── */
+.market-ribbon {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-top: -18px;
+  position: relative;
+  z-index: 2;
+}
+.ribbon-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 14px 16px 12px;
+  box-shadow: var(--shadow-md);
+  border-top: 3px solid transparent;
+  text-align: center;
+  transition: transform .15s, box-shadow .15s;
+}
+.ribbon-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,.1); }
+.ribbon-card.up   { border-top-color: var(--gain); }
+.ribbon-card.down { border-top-color: var(--loss); }
+.ribbon-card .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+.ribbon-card .value { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.ribbon-card .change { font-size: 13px; font-weight: 600; margin-top: 2px; }
+.ribbon-card.up   .value, .ribbon-card.up   .change { color: var(--gain); }
+.ribbon-card.down .value, .ribbon-card.down .change { color: var(--loss); }
+
+/* ── Section ── */
+.section {
+  margin-top: 36px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.section-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+.section-header .flag {
+  font-size: 20px;
+  line-height: 1;
+}
+.section-header .accent-line {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+  min-width: 20px;
+}
+
+/* ── Cards ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--rule);
+}
+.card.full { grid-column: 1 / -1; }
+.card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+thead th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  padding: 8px 6px;
+  border-bottom: 2px solid var(--rule);
+}
+tbody td {
+  padding: 10px 6px;
+  border-bottom: 1px solid var(--stripe);
+  font-variant-numeric: tabular-nums;
+}
+tbody tr:nth-child(even) td { background: var(--stripe); }
+.gain { color: var(--gain); font-weight: 600; }
+.loss { color: var(--loss); font-weight: 600; }
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+.tag-up   { background: #FDEAEA; color: var(--gain); }
+.tag-down { background: #E6F4EC; color: var(--loss); }
+.tag-hot  { background: #FFF3E0; color: #E67E22; }
+
+/* ── News List ── */
+.news-list { list-style: none; }
+.news-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--stripe);
+  line-height: 1.6;
+}
+.news-list li:last-child { border-bottom: none; }
+.news-list .headline {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+.news-list .detail {
+  font-size: 13px;
+  color: var(--muted);
+}
+.news-list .source-tag {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--blue-accent);
+  margin-left: 6px;
+}
+
+/* ── Verification Table ── */
+.verify-table td:nth-child(3) { text-align: center; }
+.stars { color: var(--gold); letter-spacing: 1px; }
+
+/* ── Watch Points ── */
+.watch-list {
+  list-style: none;
+  counter-reset: watch;
+}
+.watch-list li {
+  counter-increment: watch;
+  padding: 14px 0 14px 44px;
+  border-bottom: 1px solid var(--stripe);
+  position: relative;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.watch-list li:last-child { border-bottom: none; }
+.watch-list li::before {
+  content: counter(watch);
+  position: absolute;
+  left: 0; top: 14px;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Big Number Callout ── */
+.big-number {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.03em;
+  color: var(--gain);
+}
+.big-number-label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ── Buy/Sell Cards ── */
+.buy-card, .sell-card {
+  padding: 20px;
+  border-radius: var(--radius);
+}
+.buy-card {
+  background: linear-gradient(135deg, #FBF5F5 0%, #FEF9F9 100%);
+  border: 1px solid #F0D0D0;
+}
+.sell-card {
+  background: linear-gradient(135deg, #F4F9F5 0%, #F8FBF9 100%);
+  border: 1px solid #C8DFCC;
+}
+.buy-card h4, .sell-card h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.buy-card h4 { color: var(--gain); }
+.sell-card h4 { color: var(--loss); }
+.buy-card .stock-item, .sell-card .stock-item {
+  padding: 10px 0;
+  border-bottom: 1px dotted var(--rule);
+  line-height: 1.7;
+}
+.buy-card .stock-item:last-child, .sell-card .stock-item:last-child { border-bottom: none; }
+.stock-item .stock-name { font-weight: 600; font-size: 15px; }
+.stock-item .stock-reason { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.stock-item .stock-tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 2px;
+  margin-right: 4px;
+  font-weight: 500;
+}
+
+/* ── Conduction Card ── */
+.conduction-card {
+  background: linear-gradient(135deg, #FEFDFB 0%, #FFF9F0 100%);
+  border-left: 4px solid var(--gold);
+}
+
+/* ── Strategy Summary ── */
+.strategy-box {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.strategy-box strong { color: var(--ink); }
+
+/* ── Footer ── */
+.page-footer {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 2px solid var(--rule);
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 800px) {
+  .market-ribbon { grid-template-columns: repeat(3, 1fr); }
+  .card-grid { grid-template-columns: 1fr; }
+  .masthead-inner { flex-direction: column; text-align: center; }
+  .masthead-meta { text-align: center; }
+}
+@media (max-width: 500px) {
+  .market-ribbon { grid-template-columns: repeat(2, 1fr); }
+  .masthead h1 { font-size: 22px; }
+}
+
+/* Print */
+@media print {
+  body { background: #FFF; }
+  .page { max-width: 100%; }
+  .masthead { background: #FFF; color: #000; border-bottom: 2px solid #000; }
+  .masthead h1 { color: #000; }
+  .masthead-meta { color: #666; }
+}
+</style>
+</head>
+<body>
+
+<!-- 1. MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <h1>每日股市简报<span>Daily Market Briefing</span></h1>
+    <div class="masthead-meta">
+      2026-07-06 收盘<br>
+      生成时间 <strong>2026-07-07 08:00 CST</strong>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+
+<!-- 2. MARKET RIBBON -->
+<section class="market-ribbon">
+  <div class="ribbon-card down">
+    <div class="label">上证指数</div>
+    <div class="value">4041.24</div>
+    <div class="change">-0.06%</div>
+  </div>
+  <div class="ribbon-card down">
+    <div class="label">沪深300</div>
+    <div class="value">4842.00</div>
+    <div class="change">-0.00%</div>
+  </div>
+  <div class="ribbon-card down">
+    <div class="label">创业板指</div>
+    <div class="value">3948.86</div>
+    <div class="change">-1.77%</div>
+  </div>
+  <div class="ribbon-card up">
+    <div class="label">S&P 500</div>
+    <div class="value">7537.43</div>
+    <div class="change">+0.72%</div>
+  </div>
+  <div class="ribbon-card up">
+    <div class="label">NASDAQ</div>
+    <div class="value">26121.16</div>
+    <div class="change">+1.12%</div>
+  </div>
+  <div class="ribbon-card up">
+    <div class="label">道琼斯</div>
+    <div class="value">53055.91</div>
+    <div class="change">+0.29%</div>
+  </div>
+</section>
+
+<!-- 3. A股市场 -->
+<section class="section">
+  <div class="section-header">
+    <span class="flag">🇨🇳</span>
+    <h2>A股市场</h2>
+    <span class="accent-line"></span>
+  </div>
+
+  <div class="card-grid">
+    <!-- 指数详表 -->
+    <div class="card">
+      <h3>主要指数</h3>
+      <table>
+        <thead>
+          <tr><th>指数</th><th>收盘价</th><th>涨跌幅</th><th>数据来源</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>上证指数</td><td>4041.24</td><td class="loss">-0.06%</td><td>MCP</td></tr>
+          <tr><td>沪深300</td><td>4842.00</td><td class="loss">-0.00%</td><td>MCP</td></tr>
+          <tr><td>深证成指</td><td>15416.80</td><td class="loss">-1.16%</td><td>MCP</td></tr>
+          <tr><td>创业板指</td><td>3948.86</td><td class="loss">-1.77%</td><td>MCP</td></tr>
+          <tr><td>科创50</td><td>1996.10</td><td class="gain">+1.04%</td><td>MCP</td></tr>
+          <tr><td>北证50</td><td>1245.97</td><td class="loss">-3.25%</td><td>MCP</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 成交额 -->
+    <div class="card">
+      <h3>全市场成交额</h3>
+      <div class="big-number" style="font-size:36px;">3.10万亿</div>
+      <div class="big-number-label">多源交叉验证区间 3.09-3.11 万亿元（东方财富/证券时报/爱股票）</div>
+      <div class="strategy-box" style="margin-top:16px;">
+        <strong>⚠ 数据矛盾：</strong>MCP接口返回590.36亿，与WebSearch多源（3.09-3.11万亿）相差约50倍。正文采用WebSearch交叉验证数据。详见「消息源验证」板块。
+      </div>
+    </div>
+
+    <!-- 盘面特征 -->
+    <div class="card news-list">
+      <h3>盘面特征</h3>
+      <ul class="news-list">
+        <li><span class="detail"><strong>沪强深弱格局：</strong>沪指守住4000点整数关口微跌0.06%，深成指跌1.16%，创业板指跌1.77%。科创50逆势收红+1.04%，芯片封测板块带动，中芯国际涨近3%、寒武纪涨1.24%。</span></li>
+        <li><span class="detail"><strong>市场宽度极度偏弱：</strong>上涨1875家 vs 下跌3530家，涨停73家，跌停53家；超3500只个股下跌，涨超9%的110只 vs 跌超9%的124只。</span></li>
+        <li><span class="detail"><strong>资金高低切换显著：</strong>主力净流出约590-873亿元，电子板块净流出252亿居首；资金从科技成长涌向煤炭、银行、石油石化等低估值高股息板块。</span></li>
+        <li><span class="detail"><strong>科技股严重分化：</strong>存储芯片江波龙（中报预增620倍）涨10.32%，但杭电股份（中报预增8倍）却闪崩跌停——业绩预喜≠股价上涨，关键看前期涨幅和筹码结构。</span></li>
+        <li><span class="detail"><strong>北向资金净流出12.7亿：</strong>减持深市高位成长/科技赛道（电子、通信、电力设备）；小幅加仓煤炭、生猪养殖、创新药、银行等低位防御板块。北向交易额占全市场12.82%。</span></li>
+        <li><span class="detail"><strong>交易新规首日施行：</strong>主板ST/*ST股涨跌幅由5%扩至10%；盘后固定价格交易扩展至全部A股和ETF；深交所创业板引入做市商制度。ST板块出现分化。</span></li>
+      </ul>
+    </div>
+
+    <!-- 涨跌家数 -->
+    <div class="card">
+      <h3>涨跌统计</h3>
+      <table>
+        <thead>
+          <tr><th>指标</th><th>数值</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>上涨家数</td><td class="gain">1875</td></tr>
+          <tr><td>下跌家数</td><td class="loss">3530</td></tr>
+          <tr><td>涨停</td><td>73</td></tr>
+          <tr><td>跌停</td><td>53</td></tr>
+          <tr><td>涨超9%</td><td>110</td></tr>
+          <tr><td>跌超9%</td><td>124</td></tr>
+          <tr><td>融资余额</td><td>13.59万亿（MCP）<span class="tag tag-hot" style="margin-left:4px;">存疑</span></td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box" style="margin-top:12px;">
+        <strong>⚠ 融资余额：</strong>MCP返回13.59亿，有来源称两融余额降至3万亿元以下，量级存疑。
+      </div>
+    </div>
+
+    <!-- 领涨板块 -->
+    <div class="card">
+      <h3>领涨板块 TOP 5</h3>
+      <table>
+        <thead>
+          <tr><th>板块</th><th>涨幅</th><th>领涨个股</th><th>驱动逻辑</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>煤炭</td><td class="gain">+4.11%</td><td>昊华能源（涨停）</td><td>高温天气推升电煤需求，厄尔尼诺发酵</td></tr>
+          <tr><td>农林牧渔</td><td class="gain">+2.57%</td><td>巨星农牧（涨停）</td><td>猪价7月明显反弹，大猪存栏偏紧</td></tr>
+          <tr><td>石油石化</td><td class="gain">+2.43%</td><td>贝肯能源（涨停）</td><td>防御属性凸显，资金高低切换</td></tr>
+          <tr><td>银行</td><td class="gain">+1.90%</td><td>浙商银行</td><td>低估值高股息防御配置</td></tr>
+          <tr><td>医药生物</td><td class="gain">+0.70%</td><td>首药控股-U</td><td>药监局优化细胞治疗审评政策利好</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 领跌板块 -->
+    <div class="card">
+      <h3>领跌板块 TOP 5</h3>
+      <table>
+        <thead>
+          <tr><th>板块</th><th>跌幅</th><th>领跌个股</th><th>驱动逻辑</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>建筑材料</td><td class="loss">-5.75%</td><td>国际复材</td><td>中国巨石跌停，玻璃纤维等材料股拖累</td></tr>
+          <tr><td>通信</td><td class="loss">-3.05%</td><td>数据港</td><td>Meta算力部署调整冲击，中际旭创、新易盛走弱</td></tr>
+          <tr><td>机械设备</td><td class="loss">-1.97%</td><td>工大科雅</td><td>机器人、商业航天概念回调</td></tr>
+          <tr><td>有色金属</td><td class="loss">-1.17%</td><td>斯瑞新材</td><td>近10日累计跌超12%，前期涨幅过大</td></tr>
+          <tr><td>国防军工</td><td class="loss">-1.12%</td><td>电科蓝天</td><td>板块整体走弱</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 关键新闻 -->
+    <div class="card full">
+      <h3>关键新闻</h3>
+      <ul class="news-list">
+        <li>
+          <div class="headline">央行开展1万亿元买断式逆回购操作 <span class="source-tag">央行公告</span></div>
+          <div class="detail">期限3个月，实现净投放2000亿元（加量续作），场内资金面宽松，制约指数深度杀跌空间。</div>
+        </li>
+        <li>
+          <div class="headline">A股交易新规正式施行 <span class="source-tag">沪深北交易所</span></div>
+          <div class="detail">盘后固定价格交易扩展至全部A股和ETF；主板ST/*ST股涨跌幅5%→10%；深交所创业板引入做市商制度。</div>
+        </li>
+        <li>
+          <div class="headline">国务院印发《美丽中国建设"十五五"规划》 <span class="source-tag">国务院</span></div>
+          <div class="detail">明确2030年碳达峰目标如期实现，推动绿色产业升级、碳市场扩容，利好碳交易/节能环保/低碳技术赛道。</div>
+        </li>
+        <li>
+          <div class="headline">证监会就完善上市公司再融资规则征求意见 <span class="source-tag">证监会</span></div>
+          <div class="detail">建立储架发行制度、优化小额快速再融资、统一市价发行定价机制、延长锁定期、强化"扶优扶科"导向。</div>
+        </li>
+        <li>
+          <div class="headline">全球最大数据中心园区项目宣布终止 <span class="source-tag">东方财富</span></div>
+          <div class="detail">海外AI基建预期降温，叠加Meta开放闲置算力对外出租，市场解读为全球AI硬件需求边际放缓信号。</div>
+        </li>
+        <li>
+          <div class="headline">聚辰股份宣布Nor Flash产品价格上调25% <span class="source-tag">证券时报</span></div>
+          <div class="detail">7月6日起生效，存储芯片涨价趋势延续，支撑半导体细分方向景气逻辑。</div>
+        </li>
+        <li>
+          <div class="headline">3000亿元保障房专项再贷款 <span class="source-tag">多来源</span></div>
+          <div class="detail">叠加"十五五"城市更新规划推动，午后地产股拉升，万通发展、京能置业涨停。</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 机构观点 -->
+    <div class="card full">
+      <h3>十大机构后市观点</h3>
+      <table>
+        <thead>
+          <tr><th style="width:12%;">机构</th><th style="width:42%;">核心观点</th><th style="width:46%;">配置建议</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>中信证券</strong></td>
+            <td>风格再平衡而非趋势性逆转——叙事回摆催化非AI板块修复，K型分化发生收敛</td>
+            <td>AI+能化结构，增配低估值券商、创新药</td>
+          </tr>
+          <tr>
+            <td><strong>国泰海通</strong></td>
+            <td>A股仍处于重要做多窗口期，进攻是主基调——不确定性降低+增量入市共振</td>
+            <td>科技/制造+券商/银行；主题：机器人、商业航天</td>
+          </tr>
+          <tr>
+            <td><strong>招商证券</strong></td>
+            <td>市场大概率回归AI主线——Meta出售算力≠算力过剩，存储芯片供需缺口/MLCC涨价等产业趋势未证伪</td>
+            <td>科技修复+中报业绩双主线，关注锂电材料、创新药</td>
+          </tr>
+          <tr>
+            <td><strong>华泰证券</strong></td>
+            <td>风格全面切换言之尚早——非农后加息预期降温，AI资本开支未放缓</td>
+            <td>科技逢低吸筹+创新药、证券+中报预增低位品种</td>
+          </tr>
+          <tr>
+            <td><strong>中泰证券</strong></td>
+            <td>科技不转弯，价值风格短期难以反转——AI与非AI分化源于产业与经济结构</td>
+            <td>存储+半导体设备+海外算力链+新能源/机器人</td>
+          </tr>
+          <tr>
+            <td><strong>中信建投</strong></td>
+            <td>从"集中抱团"到"百花齐放"——算力硬件高波动期，行情向更具性价比领域延伸</td>
+            <td>AI+机器人+券商+有色金属+红利资产</td>
+          </tr>
+          <tr>
+            <td><strong>巨丰投顾</strong></td>
+            <td>旧热点退潮、新热点缺位——核心策略是回避轮动，锚定业绩</td>
+            <td>以中报业绩为锚，不追涨无承接的低位板块</td>
+          </tr>
+          <tr>
+            <td><strong>平安证券</strong></td>
+            <td>关注三条线索：AI产业链、"K型"上沿的周期制造、红利防御</td>
+            <td>三线均衡配置</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div><!-- .card-grid -->
+</section>
+
+<!-- 4. 美股市场 -->
+<section class="section">
+  <div class="section-header">
+    <span class="flag">🇺🇸</span>
+    <h2>美股市场</h2>
+    <span class="accent-line"></span>
+  </div>
+
+  <div class="card-grid">
+    <!-- 主要指数 -->
+    <div class="card">
+      <h3>主要指数</h3>
+      <table>
+        <thead>
+          <tr><th>指数</th><th>收盘价</th><th>涨跌幅</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>道琼斯工业</td><td>53055.91</td><td class="gain">+0.29%</td></tr>
+          <tr><td>S&P 500</td><td>7537.43</td><td class="gain">+0.72%</td></tr>
+          <tr><td>NASDAQ</td><td>26121.16</td><td class="gain">+1.12%</td></tr>
+          <tr><td>罗素2000</td><td>3009.54</td><td class="gain">+0.45%</td></tr>
+          <tr><td>费城半导体 SOX</td><td>13709.66</td><td class="gain">+4.2%</td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box" style="margin-top:12px;">
+        <strong>亮点：</strong>道琼斯历史性首次收于53,000点上方创收盘新高；SOX经历7月1-2日累计超11%暴跌后强势反弹，AMD涨8.5%、高通涨6%、博通涨4%。
+      </div>
+    </div>
+
+    <!-- 核心驱动 -->
+    <div class="card news-list">
+      <h3>核心驱动</h3>
+      <ul class="news-list">
+        <li><span class="detail"><strong>AI/半导体强势反弹：</strong>经历假期前抛售后资金回补，费城半导体SOX涨约4.2%，AMD涨6.5%+、高通涨6%、博通涨5.7%（与苹果合作延长至2031年）。</span></li>
+        <li><span class="detail"><strong>弱于预期的6月非农数据：</strong>仅新增5.7万人（预期11万），前两月合计下修7.4万，加息预期降温支撑风险偏好回升。</span></li>
+        <li><span class="detail"><strong>OPEC+增产协议：</strong>8月起增产18.8万桶/日，WTI油价回落至~$68.55，通胀压力边际缓解。</span></li>
+        <li><span class="detail"><strong>10年期美债收益率维持~4.46%高位：</strong>实际利率仍对估值构成压力，但市场短期聚焦AI反弹而非利率。</span></li>
+        <li><span class="detail"><strong>美联储独立性争议：</strong>特朗普阵营在最高法院裁决后继续推动重塑美联储，"贬值交易"逻辑支撑黄金和风险资产。</span></li>
+      </ul>
+    </div>
+
+    <!-- M7科技七巨头 -->
+    <div class="card full">
+      <h3>科技七巨头 Magnificent 7</h3>
+      <table>
+        <thead>
+          <tr><th>公司</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>驱动因素</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Tesla</td><td>TSLA</td><td>$419.77</td><td class="gain">+6.69%</td><td>领涨M7，市场情绪回暖</td></tr>
+          <tr><td>Meta</td><td>META</td><td>$600.29</td><td class="gain">+2.98%</td><td>通信服务板块强势</td></tr>
+          <tr><td>Alphabet (Google)</td><td>GOOGL</td><td>$366.46</td><td class="gain">+1.82%</td><td>通信服务板块领涨</td></tr>
+          <tr><td>Apple</td><td>AAPL</td><td>$312.66</td><td class="gain">+1.31%</td><td>博通与苹果合作延长至2031年提振</td></tr>
+          <tr><td>Amazon</td><td>AMZN</td><td>$244.16</td><td class="gain">+0.61%</td><td>跟随大盘温和上涨</td></tr>
+          <tr><td>NVIDIA</td><td>NVDA</td><td>$195.55</td><td class="gain">+0.37%</td><td>半导体板块整体反弹但幅度较小</td></tr>
+          <tr><td>Microsoft</td><td>MSFT</td><td>$386.74</td><td class="loss">-0.96%</td><td>宣布裁员约4800人（Xbox部门），M7中唯一下跌</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 美联储观察 -->
+    <div class="card">
+      <h3>美联储观察</h3>
+      <table>
+        <thead>
+          <tr><th>指标</th><th>数据</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>当前利率</td><td><strong>3.50-3.75%</strong></td></tr>
+          <tr><td>美联储主席</td><td>Kevin Warsh（2026年5月上任）</td></tr>
+          <tr><td>7月维持概率</td><td class="gain">74.3%</td></tr>
+          <tr><td>7月加息概率</td><td class="loss">25.7%</td></tr>
+          <tr><td>9月加息概率</td><td>46.2%（至少一次25bp概率57.1%）</td></tr>
+          <tr><td>下次事件</td><td><strong>7月8日</strong> 美联储6月会议纪要公布</td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box" style="margin-top:12px;">
+        <strong>Warsh鸽派信号：</strong>在ECB论坛表态通胀风险近四周已降温，拒绝就加息给出前瞻指引。来源：CME FedWatch
+      </div>
+    </div>
+
+    <!-- 宏观指标 -->
+    <div class="card">
+      <h3>宏观指标</h3>
+      <table>
+        <thead>
+          <tr><th>指标</th><th>数据</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>美元指数 DXY</td><td>约99.4（上涨约0.2%）</td></tr>
+          <tr><td>WTI原油</td><td>约$68.55/bbl（下跌约0.2%）</td></tr>
+          <tr><td>黄金期货</td><td>$4,149.20/oz</td></tr>
+          <tr><td>2年期美债</td><td>4.108%（-1.66bp）</td></tr>
+          <tr><td>10年期美债</td><td>4.459-4.467%（基本持平）</td></tr>
+          <tr><td>30年期美债</td><td>4.984%（+1.51bp）</td></tr>
+          <tr><td>收益率曲线</td><td>趋平，10Y/2Y利差收窄，曲线仍倒挂</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 板块表现 -->
+    <div class="card full">
+      <h3>标普500板块表现</h3>
+      <table>
+        <thead>
+          <tr><th>板块</th><th>涨跌幅</th><th>排名</th><th>驱动因素</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>通信服务</td><td class="gain">+1.64%</td><td><span class="tag tag-up">最佳</span></td><td>Meta、Alphabet、T-Mobile领涨</td></tr>
+          <tr><td>信息技术</td><td class="gain">+1.34%</td><td><span class="tag tag-up">第二</span></td><td>AMD、高通、博通等半导体股强势反弹</td></tr>
+          <tr><td>非必需消费</td><td class="gain">上涨</td><td><span class="tag tag-up">偏强</span></td><td>Tesla涨6.69%带动</td></tr>
+          <tr><td>工业</td><td class="gain">上涨</td><td><span class="tag tag-up">偏强</span></td><td>—</td></tr>
+          <tr><td>房地产</td><td class="loss">下跌</td><td><span class="tag tag-down">偏弱</span></td><td>房屋建筑商下跌</td></tr>
+          <tr><td>公用事业</td><td class="loss">-1.06%</td><td><span class="tag tag-down">倒数第二</span></td><td>资金从防御板块转向科技/通信周期板块</td></tr>
+          <tr><td>医疗保健</td><td class="loss">-1.17%</td><td><span class="tag tag-down">最差</span></td><td>JNJ跌1.73%、AbbVie跌1.90%、Pfizer跌2.27%，受关税和政府定价政策担忧拖累</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div><!-- .card-grid -->
+</section>
+
+<!-- 5. 黄金与VIX -->
+<section class="section">
+  <div class="section-header">
+    <span class="flag">🥇</span>
+    <h2>黄金与VIX</h2>
+    <span class="accent-line"></span>
+  </div>
+
+  <div class="card-grid">
+    <!-- 黄金行情 -->
+    <div class="card">
+      <h3>黄金行情</h3>
+      <div class="big-number">$4,200</div>
+      <div class="big-number-label">现货约$4,177-4,205/oz（日内涨近2%）· COMEX $4,149.20/oz</div>
+      <div class="strategy-box" style="margin-top:16px;">
+        日内区间 $4,137.29 - $4,191.40 · 打破七周连跌趋势
+      </div>
+    </div>
+
+    <!-- 白银 / 金银比 -->
+    <div class="card">
+      <h3>白银 &amp; 金银比</h3>
+      <table>
+        <thead>
+          <tr><th>指标</th><th>数据</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>白银现货</td><td class="gain">约$62.965/oz（+3.11%）</td></tr>
+          <tr><td>白银 COMEX</td><td>$62.29/oz</td></tr>
+          <tr><td>金银比</td><td>约67.4（也有来源报66.5）</td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box" style="margin-top:12px;">
+        金银比从69降至67，白银涨幅（+3.11%）明显超过黄金（+2%），反映工业需求预期改善和risk-on环境。
+      </div>
+    </div>
+
+    <!-- VIX恐慌指数 -->
+    <div class="card">
+      <h3>VIX 恐慌指数</h3>
+      <table>
+        <thead>
+          <tr><th>指标</th><th>数据</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>收盘价</td><td><strong>15.57</strong></td></tr>
+          <tr><td>涨跌幅</td><td class="loss">-1.52%</td></tr>
+          <tr><td>开盘</td><td>16.40</td></tr>
+          <tr><td>日内高/低</td><td>16.50 / 15.56</td></tr>
+          <tr><td>形态</td><td>跳空高开5.33%至16.40后持续回落，形成看跌吞噬形态</td></tr>
+        </tbody>
+      </table>
+      <div class="strategy-box" style="margin-top:12px;">
+        VIX溢价被消化，市场恐慌退潮。处于过去12个月中低位置（约40-50百分位），距20警戒线较远。
+      </div>
+    </div>
+
+    <!-- 驱动分析 -->
+    <div class="card news-list">
+      <h3>贵金属驱动分析</h3>
+      <ul class="news-list">
+        <li>
+          <div class="headline">美国6月非农大幅不及预期 <span class="tag tag-up" style="margin-left:4px;">强利多</span></div>
+          <div class="detail">仅新增5.7万人（预期11万），前两月合计下修7.4万——就业降温大幅削减美联储加息预期，降低持有黄金的机会成本。</div>
+        </li>
+        <li>
+          <div class="headline">美联储主席Warsh鸽派信号 <span class="tag tag-up" style="margin-left:4px;">强利多</span></div>
+          <div class="detail">在ECB论坛表态通胀风险近四周已降温，拒绝提供加息前瞻指引——7月加息概率降至25.7%。</div>
+        </li>
+        <li>
+          <div class="headline">OPEC+增产致油价回落，通胀预期降温 <span class="tag tag-up" style="margin-left:4px;">利多</span></div>
+          <div class="detail">8月起增产18.8万桶/日，WTI跌至~$68.55，通胀压力缓解→实际利率预期下行→黄金吸引力上升。</div>
+        </li>
+        <li>
+          <div class="headline">美国-伊朗临时和平协议与霍尔木兹海峡重开 <span class="tag tag-hot" style="margin-left:4px;">中性偏多</span></div>
+          <div class="detail">中东地缘风险缓和导致油价暴跌（布伦特~$72），黄金从"避险溢价"转向"低通胀预期"驱动——与油价出现罕见负相关。</div>
+        </li>
+        <li>
+          <div class="headline">美联储独立性争议（"贬值交易"） <span class="tag tag-up" style="margin-left:4px;">长期利多</span></div>
+          <div class="detail">特朗普阵营在最高法院裁决后继续推动重塑美联储，结构性削弱美元信用，支撑黄金长期看涨逻辑。</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 避险综合研判 -->
+    <div class="card full">
+      <h3>避险综合研判</h3>
+      <ul class="news-list">
+        <li><span class="detail"><strong>短期动能偏多：</strong>黄金打破七周连跌趋势，非农+Warsh鸽派双重催化下站上$4,200关口，下一个阻力位看$4,300（JPMorgan Q3目标）。</span></li>
+        <li><span class="detail"><strong>VIX回落至15.57反映市场恐慌退潮：</strong>但单一个股波动率仍处历史高位（股票离散度创新高），表面平静下结构性风险未消——科技/AI板块内部冰火两重天。</span></li>
+        <li><span class="detail"><strong>实际利率仍是核心变量：</strong>10Y美债收益率~4.46%高位对黄金构成压制，黄金能否有效突破$4,200-4,300区间取决于7月8日FOMC会议纪要和后续通胀数据。</span></li>
+        <li><span class="detail"><strong>金银比下行信号：</strong>从69降至67，白银涨幅（+3.11%）明显超过黄金（+2%），反映工业需求预期改善和风险偏好回升——通常对应risk-on环境。</span></li>
+        <li><span class="detail"><strong>中期关键路径：</strong>CME 9月加息概率46.2%，若7-8月通胀数据继续温和，加息预期进一步消退，黄金有望挑战$4,500（JPMorgan Q4目标）；若通胀反弹，则$4,000支撑将受考验。</span></li>
+      </ul>
+    </div>
+  </div><!-- .card-grid -->
+</section>
+
+<!-- 6. 美股→A股传导分析 -->
+<section class="section">
+  <div class="section-header">
+    <span class="flag">🔗</span>
+    <h2>美股 → A股 传导分析</h2>
+    <span class="accent-line"></span>
+  </div>
+
+  <div class="card conduction-card full" style="margin-top:20px;">
+    <table>
+      <thead>
+        <tr><th style="width:5%;">#</th><th style="width:22%;">美股信号</th><th style="width:33%;">传导逻辑链</th><th style="width:20%;">A股映射方向</th><th style="width:10%;">影响</th><th style="width:10%;">确定性</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>费城半导体SOX强反弹 +4.2%</strong><br>AMD +8.5%、高通 +6%、博通 +5.7%</td>
+          <td>SOX经历前期暴跌后强势反弹 → AI硬件情绪修复 → 映射A股半导体/封测板块 → 聚辰Nor Flash涨价25%提供基本面支撑</td>
+          <td>科创50 · 芯片封测 · 存储芯片</td>
+          <td><span class="tag tag-up">正面</span></td>
+          <td><span class="stars">★★★★</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>10Y美债收益率 4.46% 高位</strong><br>实际利率仍对估值构成压力</td>
+          <td>美债收益率高位 → 全球风险资产分母承压 → A股高PE成长/科技股估值受压制 → 板块内部分化加剧（存储强、通信弱）</td>
+          <td>高估值成长股 · 通信/光模块</td>
+          <td><span class="tag tag-down">压制</span></td>
+          <td><span class="stars">★★★★</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>美元指数 ~99.4 偏强</strong><br>北向资金净流出12.7亿</td>
+          <td>美元偏强 → 新兴市场资金外流压力 → 北向减持深市高位成长赛道（电子/通信/电力设备）→ 风格偏向沪市价值/防御</td>
+          <td>沪市价值 · 深市成长承压</td>
+          <td><span class="tag tag-down">偏空</span></td>
+          <td><span class="stars">★★★★</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>非农仅5.7万（预期11万）</strong><br>7月加息概率降至25.7%</td>
+          <td>美国就业显著走弱 → 加息预期大幅下修 → 全球流动性预期边际转松 → A股分母端改善 → 估值修复窗口打开</td>
+          <td>整体A股 · 成长风格修复</td>
+          <td><span class="tag tag-up">正面</span></td>
+          <td><span class="stars">★★★★★</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>OPEC+增产 · WTI跌至$68.55</strong><br>通胀预期边际降温</td>
+          <td>国际油价下跌 → 通胀预期下行 → 但国内煤价独立逻辑（高温+厄尔尼诺）→ 煤炭板块涨4.11%走出独立行情</td>
+          <td>煤炭 · 石油石化 · 高股息</td>
+          <td><span class="tag tag-up">正面（煤炭）</span></td>
+          <td><span class="stars">★★★</span></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><strong>Meta算力调整 · 数据中心项目终止</strong><br>海外AI基建预期边际降温</td>
+          <td>海外AI基建叙事修正 → 光模块/通信设备需求预期下修 → 中际旭创、新易盛走弱 → A股通信板块跌3.05%</td>
+          <td>通信 · 光模块 · CPO</td>
+          <td><span class="tag tag-down">负面</span></td>
+          <td><span class="stars">★★★★</span></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><strong>M7内部分化（TSLA +6.69% vs MSFT -0.96%）</strong><br>NVDA仅+0.37%</td>
+          <td>M7内部结构分化 → A股科技映射更趋细分和业绩驱动 → 纯概念品种承压，业绩兑现品种走强 → 江波龙涨10.32% vs 杭电跌停</td>
+          <td>业绩驱动型科技 · 纯概念品种</td>
+          <td><span class="tag tag-hot">分化</span></td>
+          <td><span class="stars">★★★★</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="strategy-box">
+      <strong>策略概要：</strong>美股三大正向传导（SOX反弹 + 非农降温 + 油价回落）与两大压制（美债高位 + Meta算力叙事修正）并存，A股呈现<strong>「沪强深弱 + 科技内部分化」</strong>格局。短期关注7月8日FOMC会议纪要对加息路径的进一步确认——若纪要偏鸽，成长风格有望修复；若偏鹰，防御/红利风格延续。中期核心变量仍是中报业绩窗口——「锚定业绩、回避纯概念」是当前最优策略。
+    </div>
+  </div>
+</section>
+
+<!-- 7. 今日A股操作参考 -->
+<section class="section">
+  <div class="section-header">
+    <span class="flag">🎯</span>
+    <h2>今日A股操作参考</h2>
+    <span class="accent-line"></span>
+  </div>
+
+  <div class="card-grid">
+    <!-- 买入方向 -->
+    <div class="buy-card">
+      <h4>🔥 买入 / 增配方向</h4>
+
+      <div class="stock-item">
+        <div class="stock-name">🥇 煤炭 · 高股息防御</div>
+        <div class="stock-reason"><strong>逻辑：</strong>高温+厄尔尼诺推升电煤需求，板块昨日涨+4.11%领涨两市，资金高低切换趋势明确。机构配置建议中红利资产被中信建投、平安证券等多家推荐。</div>
+        <div class="stock-reason"><strong>催化剂：</strong>高温天气持续、电煤日耗数据上升、厄尔尼诺强度监测</div>
+        <div class="stock-reason"><strong>风险：</strong>厄尔尼诺强度不及预期、政策调控煤价</div>
+        <div><span class="stock-tag tag-up">防御</span><span class="stock-tag tag-hot">高温主题</span><span class="stock-tag tag-up">高股息</span></div>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-name">🥈 半导体设备 · 封测 · 存储芯片</div>
+        <div class="stock-reason"><strong>逻辑：</strong>存储芯片涨价趋势延续（聚辰Nor Flash上调25%），中报预增窗口（江波龙620倍预增+10.32%），科创50逆势+1.04%。美股SOX +4.2%强反弹提供外部映射催化。中泰/招商/华泰一致推荐科技主线。</div>
+        <div class="stock-reason"><strong>催化剂：</strong>中报窗口期、存储涨价趋势延续、7月8日FOMC若偏鸽则成长估值修复</div>
+        <div class="stock-reason"><strong>风险：</strong>前期涨幅过大的品种需警惕利好兑现、AI基建叙事若继续降温可能拖累</div>
+        <div><span class="stock-tag tag-up">科技主线</span><span class="stock-tag tag-up">业绩驱动</span><span class="stock-tag tag-hot">美股映射</span></div>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-name">🥉 创新药</div>
+        <div class="stock-reason"><strong>逻辑：</strong>药监局优化细胞治疗审评政策利好，医药生物板块涨+0.70%企稳。前期调整充分，北向小幅加仓。中信/招商/华泰等多家机构明确推荐增配创新药。</div>
+        <div class="stock-reason"><strong>催化剂：</strong>政策利好落地、中报业绩改善预期</div>
+        <div class="stock-reason"><strong>风险：</strong>集采政策不确定性、研发进展不及预期</div>
+        <div><span class="stock-tag tag-up">政策利好</span><span class="stock-tag tag-up">机构共识</span><span class="stock-tag tag-hot">低位修复</span></div>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-name">🏦 券商</div>
+        <div class="stock-reason"><strong>逻辑：</strong>交易新规首日施行（盘后固定价格交易扩展+做市商制度），市场交投活跃（3.10万亿成交）。国泰海通、中信、中信建投、华泰等多家机构明确建议增配券商。</div>
+        <div class="stock-reason"><strong>催化剂：</strong>新规红利释放、中报业绩预增</div>
+        <div class="stock-reason"><strong>风险：</strong>市场回调导致自营承压、成交量回落</div>
+        <div><span class="stock-tag tag-up">制度红利</span><span class="stock-tag tag-up">交投活跃</span><span class="stock-tag tag-hot">机构增配</span></div>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-name">🏗️ 地产 · 城市更新（交易性机会）</div>
+        <div class="stock-reason"><strong>逻辑：</strong>3000亿保障房专项再贷款+"十五五"城市更新规划推动，午后地产股拉升（万通发展、京能置业涨停）。属政策驱动的交易性机会，非趋势性配置。</div>
+        <div class="stock-reason"><strong>催化剂：</strong>政策细则落地、城市更新项目招标</div>
+        <div class="stock-reason"><strong>风险：</strong>政策效果不及预期、行业基本面偏弱、追高风险大</div>
+        <div><span class="stock-tag tag-hot">政策驱动</span><span class="stock-tag tag-hot">交易性</span></div>
+      </div>
+    </div>
+
+    <!-- 卖出 / 回避方向 -->
+    <div class="sell-card">
+      <h4>❄️ 卖出 / 回避方向</h4>
+
+      <div class="stock-item">
+        <div class="stock-name">📡 通信 · 光模块 · CPO</div>
+        <div class="stock-reason"><strong>逻辑：</strong>Meta算力部署调整+全球最大数据中心项目终止，海外AI基建预期边际降温。通信板块昨日跌3.05%，中际旭创、新易盛等核心标的走弱。北向持续减持通信板块。</div>
+        <div class="stock-reason"><strong>关注：</strong>若Meta后续上调CAPEX计划可重新审视，短期回避</div>
+        <div><span class="stock-tag tag-down">叙事修正</span><span class="stock-tag tag-down">北向减持</span></div>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-name">🧱 建筑材料</div>
+        <div class="stock-reason"><strong>逻辑：</strong>板块昨日跌5.75%领跌两市，中国巨石跌停，玻璃纤维等材料股全面拖累。房地产新开工疲弱，行业需求端未见改善信号。</div>
+        <div class="stock-reason"><strong>关注：</strong>基建投资超预期可重新评估，当前回避</div>
+        <div><span class="stock-tag tag-down">领跌板块</span><span class="stock-tag tag-down">需求疲弱</span></div>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-name">🔩 有色金属（涨幅过大品种）</div>
+        <div class="stock-reason"><strong>逻辑：</strong>前期涨幅过大，近10日累计跌超12%，昨日再跌1.17%。机构提示高位波动风险，中信建投虽仍推荐但建议等待回调后的介入机会。</div>
+        <div class="stock-reason"><strong>关注：</strong>新能源金属子赛道（锂/钴/稀土）或有结构性机会，等待回调企稳</div>
+        <div><span class="stock-tag tag-down">高位回调</span><span class="stock-tag tag-hot">谨慎观望</span></div>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-name">🛡️ 国防军工</div>
+        <div class="stock-reason"><strong>逻辑：</strong>板块昨日跌1.12%，整体走弱。缺乏新催化，前期炒作资金持续撤退。军工板块属于高beta品种，在市场风格切换期波动加剧。</div>
+        <div class="stock-reason"><strong>关注：</strong>地缘事件或装备采购催化可重新关注，当前回避</div>
+        <div><span class="stock-tag tag-down">资金撤退</span><span class="stock-tag tag-down">缺乏催化</span></div>
+      </div>
+
+      <div class="stock-item">
+        <div class="stock-name">⚠️ ST板块（高博弈风险）</div>
+        <div class="stock-reason"><strong>逻辑：</strong>交易新规首日ST股涨跌幅扩至10%，板块分化加大。博弈风险极高，基本面堪忧品种在新规下面临退市加速风险。巨丰投顾明确提示"回避轮动，锚定业绩"。</div>
+        <div class="stock-reason"><strong>不建议：</strong>普通投资者参与ST板块博弈</div>
+        <div><span class="stock-tag tag-down">退市风险</span><span class="stock-tag tag-down">高波动</span></div>
+      </div>
+    </div>
+  </div><!-- .card-grid -->
+</section>
+
+<!-- 8. 消息源验证 -->
+<section class="section">
+  <div class="section-header">
+    <span class="flag">✅</span>
+    <h2>消息源验证与数据质量</h2>
+    <span class="accent-line"></span>
+  </div>
+
+  <div class="card full">
+    <h3>数据溯源与可信度评估</h3>
+    <table class="verify-table">
+      <thead>
+        <tr><th>数据项</th><th>来源</th><th style="text-align:center;">可信度</th><th>验证说明</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>A股指数收盘价</td>
+          <td>MCP（东方财富 akshare）</td>
+          <td class="stars">★★★★★</td>
+          <td>MCP直接返回，数据精确到小数点后3位，权威性高</td>
+        </tr>
+        <tr>
+          <td>A股成交额（3.10万亿）</td>
+          <td>WebSearch多源交叉验证</td>
+          <td class="stars">★★★★</td>
+          <td>东方财富/证券时报/爱股票等3+独立来源高度一致（3.09-3.11万亿），但MCP返回590.36亿存在数量级矛盾 ⚠</td>
+        </tr>
+        <tr>
+          <td>A股涨跌家数</td>
+          <td>WebSearch多源交叉验证</td>
+          <td class="stars">★★★★</td>
+          <td>多个复盘来源独立验证一致（1875涨/3530跌），可信度高</td>
+        </tr>
+        <tr>
+          <td>领涨/领跌板块及排名</td>
+          <td>WebSearch多源交叉验证</td>
+          <td class="stars">★★★</td>
+          <td>板块排名各来源一致，但具体涨跌幅有±0.1%量级差异。MCP get_a_share_sectors返回空数组</td>
+        </tr>
+        <tr>
+          <td>北向资金流向</td>
+          <td>WebSearch</td>
+          <td class="stars">★★★</td>
+          <td>净流出方向与金额各来源基本一致，但具体净流出数值略有差异</td>
+        </tr>
+        <tr>
+          <td>融资融券余额</td>
+          <td>MCP + WebSearch</td>
+          <td class="stars">★★</td>
+          <td>MCP返回13.59亿与WebSearch数万亿量级差异极大，MCP可能返回当日变动值而非余额 ⚠</td>
+        </tr>
+        <tr>
+          <td>美股指数收盘价</td>
+          <td>AP News / Yahoo Finance / Nasdaq.com</td>
+          <td class="stars">★★★★★</td>
+          <td>3+权威来源交叉验证高度一致，数据可靠</td>
+        </tr>
+        <tr>
+          <td>M7个股行情</td>
+          <td>Yahoo Finance</td>
+          <td class="stars">★★★★★</td>
+          <td>个股数据直接取自交易所行情，精确可靠</td>
+        </tr>
+        <tr>
+          <td>美债收益率</td>
+          <td>tastylive / 新浪财经</td>
+          <td class="stars">★★★★</td>
+          <td>多源交叉验证，数值一致（10Y ~4.46%）</td>
+        </tr>
+        <tr>
+          <td>美联储利率概率</td>
+          <td>CME FedWatch</td>
+          <td class="stars">★★★★★</td>
+          <td>官方衍生品定价工具，最权威的利率预期指标</td>
+        </tr>
+        <tr>
+          <td>黄金/白银价格</td>
+          <td>CNGOLD / Moneycontrol / BingX / Guardian Gold</td>
+          <td class="stars">★★★</td>
+          <td>4+独立来源，COMEX价格一致，现货价格有$10-30区间差异属正常</td>
+        </tr>
+        <tr>
+          <td>VIX</td>
+          <td>Edgen / Nasdaq.com / Schaeffer's</td>
+          <td class="stars">★★★★</td>
+          <td>3个独立来源一致（15.57），日内走势数据完整</td>
+        </tr>
+        <tr>
+          <td>美股板块表现</td>
+          <td>Investing.com</td>
+          <td class="stars">★★★</td>
+          <td>主要依赖单源，但通信服务/信息技术领涨、医疗保健最差的排名逻辑一致</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 数据矛盾专项 -->
+  <div class="card full" style="margin-top:16px; border-left: 4px solid #E67E22;">
+    <h3>⚠ 数据矛盾专项标注</h3>
+    <table>
+      <thead>
+        <tr><th>数据字段</th><th>MCP返回值</th><th>WebSearch交叉验证值</th><th>矛盾分析</th><th>处理方式</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>A股成交额</strong></td>
+          <td><span class="tag tag-down">590.36亿</span></td>
+          <td><span class="tag tag-up">3.09-3.11万亿</span><br>（东方财富/证券时报/爱股票等3+来源一致）</td>
+          <td>量级相差约50倍。WebSearch数据来自多个独立复盘来源高度一致，MCP的590.36亿可能是单位标注错误（若为59036亿=5.9万亿也偏高）或仅统计了部分市场</td>
+          <td><strong>正文采用WebSearch数据</strong>（3.09-3.11万亿），MCP原始值保留供核查</td>
+        </tr>
+        <tr>
+          <td><strong>融资融券余额</strong></td>
+          <td><span class="tag tag-down">13.59亿</span></td>
+          <td>有来源称降至<strong>3万亿元以下</strong></td>
+          <td>13.59亿与数万亿量级差距极大，MCP可能返回当日变动值而非存量余额</td>
+          <td><strong>MCP原始值保留</strong>，WebSearch补充说明附注</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="strategy-box">
+      本简报涉及 <strong>27</strong> 个独立数据来源（含MCP接口及WebSearch多源），其中 MCP 成功返回 2 个接口（A股指数、A股市场部分字段），另有 6 个接口全部返回 null。未覆盖数据已通过 WebSearch 多源交叉验证补充。<strong>建议后续核查 MCP get_a_share_market 接口的 total_yi 和 balance_yi 字段单位。</strong>
+    </div>
+  </div>
+</section>
+
+<!-- 9. 今日关注要点 -->
+<section class="section">
+  <div class="section-header">
+    <span class="flag">📌</span>
+    <h2>今日关注要点</h2>
+    <span class="accent-line"></span>
+  </div>
+
+  <div class="card full">
+    <ol class="watch-list">
+      <li><strong>7月8日（明日）美联储6月会议纪要公布</strong>——关注加息路径措辞变化和缩表节奏讨论，将直接影响全球风险资产定价。若纪要偏鸽（确认Warsh"通胀降温"表述），成长风格有望修复；若偏鹰，防御/红利风格延续。</li>
+      <li><strong>A股中报窗口期开启</strong>——存储芯片/半导体业绩兑现情况（江波龙620倍预增已打样），关注超预期品种的投资机会。同时警惕「利好兑现即利空」：杭电股份中报预增8倍却闪崩跌停，前期涨幅和筹码结构比业绩增速更关键。</li>
+      <li><strong>北向资金能否止住流出趋势</strong>——昨日净流出12.7亿，连续减持深市科技成长赛道。若美元指数继续偏强，北向流出压力加大，沪指4000点整数关口将经受考验。关注北向日内流向和尾盘异动。</li>
+      <li><strong>煤炭/高股息防御行情持续性</strong>——煤炭昨日+4.11%领涨，高温天气和厄尔尼诺是核心驱动力。关注中央气象台高温预警范围变化、沿海电厂日耗数据、以及煤炭板块成交量能否持续放大。若缩量加速则需警惕短期过热。</li>
+      <li><strong>全球AI基建叙事边际变化</strong>——Meta算力部署调整+全球最大数据中心项目终止构成AI基建预期的双重负面信号。今日关注海外AI产业链相关新闻（特别是科技巨头CAPEX指引），以及A股通信/光模块板块能否企稳。</li>
+    </ol>
+  </div>
+</section>
+
+<footer class="page-footer">
+  <span>数据来源：东方财富 · 新华财经 · 证券时报 · Reuters · AP News · Yahoo Finance · CNBC · Bloomberg</span>
+  <span>本简报仅供信息参考，不构成投资建议</span>
+</footer>
+
+</div><!-- .page -->
+</body>
+</html>
